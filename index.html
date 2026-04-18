@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Motivos Para Jennyfer 💜</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        love: '#FF69B4',
+                        love2: '#9370DB',
+                    },
+                    fontFamily: {
+                        dancing: ['"Dancing Script"', 'cursive'],
+                        poppins: ['"Poppins"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFC0CB 0%, #DDA0DD 100%);
+            overflow-x: hidden;
+        }
+        .heart {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 1s infinite;
+        }
+        .heart:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .motivo-card {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.5s ease;
+        }
+        .motivo-card.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 4s linear forwards;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen font-poppins relative">
+
+    <!-- Tela Inicial -->
+    <div id="telaInicial" class="flex flex-col items-center justify-center min-h-screen text-center px-4 relative z-10">
+        <h1 class="text-[clamp(2rem,8vw,5rem)] font-dancing text-white drop-shadow-2xl mb-4">
+            Para a Jennyfer 💜
+        </h1>
+        <p class="text-2xl md:text-3xl text-purple-800 font-semibold mb-12">
+            Clique no coração e descubra <br> <span class="font-black text-love text-4xl">100 MOTIVOS</span> para você namorar comigo...
+        </p>
+
+        <!-- CORAÇÃO GRANDE PARA CLICAR -->
+        <div id="botaoCoracao" class="heart text-9xl md:text-[12rem] text-love drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]">
+            ❤️
+        </div>
+
+        <p class="mt-8 text-lg text-purple-700 font-semibold bg-white bg-opacity-50 px-4 py-2 rounded-full">
+            Clique aqui para ver o Motivo 1 ⬆️
+        </p>
+    </div>
+
+    <!-- Área dos Motivos -->
+    <div id="areaMotivos" class="container mx-auto px-4 py-10 hidden relative z-10">
+        <h2 class="text-4xl md:text-6xl font-dancing text-center text-white mb-4 drop-shadow-lg">
+            Motivo <span id="numAtual" class="text-love font-bold">1</span> de 100 🥰
+        </h2>
+        <p class="text-center text-purple-900 font-semibold mb-10">Clique no botão ou no cartão para ver o próximo!</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" id="listaMotivos">
+            <!-- Os motivos vão aparecer aqui -->
+        </div>
+
+        <div class="text-center mt-12">
+            <button onclick="mostrarProximo()" class="bg-love hover:bg-love2 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transition-all transform hover:scale-105">
+                Próximo Motivo ➡️
+            </button>
+        </div>
+    </div>
+
+    <!-- Mensagem Final -->
+    <div id="mensagemFinal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-3xl max-w-md text-center mx-4 transform animate-bounce">
+            <h2 class="text-5xl mb-4">💍</h2>
+            <h3 class="text-3xl font-dancing text-love mb-4">Então Jennyfer...</h3>
+            <p class="text-xl text-gray-700 mb-6">Depois de todos esses motivos, aceita namorar comigo? 🥺💜</p>
+            <button onclick="alert('EAAAAA! ELA DISSE SIM! 🥳💍💖 VAMOS SER FELIZES!')" class="bg-love text-white px-10 py-3 rounded-full font-bold text-xl hover:scale-105 transition">
+                SIM, CLARO QUE SIM! 💍❤️
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // LISTA COMPLETA COM 100 MOTIVOS
+        const motivos = [
+            "Porque você é a pessoa mais linda que eu já vi.",
+            "Porque seu sorriso ilumina todo o meu dia.",
+            "Porque seu olhar é perfeito e me encanta.",
+            "Porque você tem um coração enorme e bondoso.",
+            "Porque só de estar perto já me faz muito bem.",
+            "Porque sua voz é a coisa mais gostosa de ouvir.",
+            "Porque você é super inteligente e esperta.",
+            "Porque é extremamente carinhosa e doce.",
+            "Porque me faz rir mesmo quando estou triste.",
+            "Porque simplesmente é VOCÊ e isso basta.",
+            "Porque seu abraço deve ser o melhor lugar do mundo.",
+            "Porque você é muito divertida e animada.",
+            "Porque você me completa de todas as formas.",
+            "Porque sonho com você todos os dias.",
+            "Porque quero cuidar de você para sempre.",
+            "Porque você é uma pessoa muito especial.",
+            "Porque não existe ninguém igual a você.",
+            "Porque seu jeito de ser é único.",
+            "Porque me deixa nervoso de um jeito muito bom.",
+            "Porque penso em você 24 horas por dia.",
+            "Porque você é forte e determinada.",
+            "Porque é delicada e meiga.",
+            "Porque tem um estilo próprio e lindo.",
+            "Porque me incentiva a ser uma pessoa melhor.",
+            "Porque o meu maior objetivo é te fazer feliz.",
+            "Porque você merece o mundo e muito mais.",
+            "Porque a gente combina demais.",
+            "Porque temos uma química inexplicável.",
+            "Porque até quando fica brava você é fofa.",
+            "Porque você é a minha princesa.",
+            "Porque quero ser o seu príncipe.",
+            "Porque não consigo parar de olhar suas fotos.",
+            "Porque sua beleza vem de dentro para fora.",
+            "Porque você é educada e simpática.",
+            "Porque trata todo mundo bem.",
+            "Porque tem um brilho único no olhar.",
+            "Porque quero te dar flores sempre.",
+            "Porque quero te levar para passear de mãos dadas.",
+            "Porque quero ser o motivo do seu sorriso.",
+            "Porque você é um sonho realizado para mim.",
+            "Porque tenho certeza que Deus te colocou no meu caminho.",
+            "Porque você é um presente de Deus.",
+            "Porque quero te proteger de tudo e todos.",
+            "Porque quero fazer muito carinho em você.",
+            "Porque quero segurar sempre a sua mão.",
+            "Porque quero olhar profundamente nos seus olhos.",
+            "Porque você é tudo o que eu preciso.",
+            "Porque sem você a vida não tem a mesma graça.",
+            "Porque você é a minha grande inspiração.",
+            "Porque é a garota mais incrível que conheço.",
+            "Porque seu cabelo é perfeito.",
+            "Porque seu sorriso é contagiante.",
+            "Porque você tem o papo mais legal do mundo.",
+            "Porque parece que me conhece há anos.",
+            "Porque me entende como ninguém.",
+            "Porque me aceita do jeito que sou.",
+            "Porque quero fazer mil planos com você.",
+            "Porque quero construir um futuro ao seu lado.",
+            "Porque o que sinto por você é real.",
+            "Porque não é ilusão, é amor de verdade.",
+            "Porque quero te beijar muito e sempre.",
+            "Porque quero te mimar todos os dias.",
+            "Porque você merece todo amor do mundo.",
+            "Porque ficar com você é a melhor sensação.",
+            "Porque você me traz uma paz enorme.",
+            "Porque é a minha calmaria em meio ao caos.",
+            "Porque é o meu amor.",
+            "Porque é a minha vida.",
+            "Porque é o meu tudo.",
+            "Porque não existe outra igual você.",
+            "Porque é única e rara.",
+            "Porque é preciosa como uma joia.",
+            "Porque tudo em você vale muito a pena.",
+            "Porque eu lutaria por você todos os dias.",
+            "Porque iria até o fim do mundo por você.",
+            "Porque eu te amo demais.",
+            "Porque gosto de você mais que tudo.",
+            "Porque me apaixonei por cada detalhe seu.",
+            "Porque você conquistou todo o meu coração.",
+            "Porque o coração aqui já é todo seu.",
+            "Porque só tenho olhares voltados para você.",
+            "Porque você é a minha prioridade número 1.",
+            "Porque é o meu pensamento logo ao acordar.",
+            "Porque é o meu sonho mais bonito.",
+            "Porque é a menina dos meus sonhos.",
+            "Porque foi feita especialmente para mim.",
+            "Porque parecemos almas gêmeas.",
+            "Porque temos uma conexão muito forte.",
+            "Porque temos uma sintonia perfeita.",
+            "Porque tudo em você me atrai e me fascina.",
+            "Porque seu jeito me encanta profundamente.",
+            "Porque sua simpatia me ganhou logo de cara.",
+            "Porque você é maravilhosa.",
+            "Porque você é sensacional.",
+            "Porque você é simplesmente incrível.",
+            "Porque você é perfeita.",
+            "Porque eu te escolhi entre todas as pessoas.",
+            "Porque quero ser oficialmente seu namorado.",
+            "Porque quero poder te chamar de minha.",
+            "Porque eu te amo muito, muito mesmo! 💖"
+        ];
+
+        let contador = 0;
+        const listaEl = document.getElementById('listaMotivos');
+        const numEl = document.getElementById('numAtual');
+
+        // Função para criar corações caindo
+        function criarCoracao() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = ['💖', '💜', '❤️', '💘', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        // Cria corações constantemente
+        setInterval(criarCoracao, 300);
+
+        // Ação de clicar no coração inicial
+        document.getElementById('botaoCoracao').addEventListener('click', () => {
+            document.getElementById('telaInicial').classList.add('hidden');
+            document.getElementById('areaMotivos').classList.remove('hidden');
+            mostrarProximo();
+        });
+
+        function mostrarProximo() {
+            if (contador < motivos.length) {
+                const div = document.createElement('div');
+                div.classList.add('motivo-card', 'bg-white', 'p-6', 'rounded-2xl', 'shadow-xl', 'border-2', 'border-pink-200');
+                div.innerHTML = `
+                    <p class="text-love font-bold text-lg">Motivo ${contador + 1}</p>
+                    <p class="text-gray-700 text-lg mt-2">${motivos[contador]}</p>
+                `;
+                div.onclick = () => mostrarProximo(); // Clica no card também
+                listaEl.appendChild(div);
+                
+                // Animação para aparecer
+                setTimeout(() => {
+                    div.classList.add('show');
+                }, 100);
+
+                numEl.innerText = contador + 1;
+                contador++;
+
+                // Efeito sonoro ou vibração pode colocar aqui
+            } else {
+                // Quando acabar os 100
+                document.getElementById('mensagemFinal').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
